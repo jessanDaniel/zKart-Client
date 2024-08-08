@@ -1,0 +1,30 @@
+<h1 class="cart-title"><span {{action 'routeToLanding'}}>&#8592;&nbsp;</span>My Cart</h1>
+<div class="cart-container">
+  <div class="cart-items">
+    {{#each model.cart_items_array as |item|}}
+      <div class="cart-item">
+        <div class="cart-item-image">
+          <img src="data:image/jpeg;base64,{{item.image}}" alt="product-image">
+        </div>
+        <div class="cart-item-info">
+          <h4>{{item.product_brand}}</h4>
+          <h3>{{item.product_model}}</h3>
+          <p>Price: &#8377; {{item.price}}</p>
+          <p>Subtotal: &#8377; {{item.subtotal}}</p>
+          <div class="cart-item-quantity">
+            <button class="quantity-button" {{action 'decrementQuantity' item}}> - </button>
+            <span>{{item.quantity}}</span>
+            <button class="quantity-button" {{action 'incrementQuantity' item}}> + </button>
+          </div>
+          <button class="delete-button" {{action 'deleteCartItem' item}}>Delete</button>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <div class="cart-summary">
+    <h3>Cart Summary</h3>
+    <p>Item Quantity :&nbsp;{{model.cart_items_array.length}}</p>
+    <p>Total: &#8377;{{model.total}}</p>
+    <button {{action "placeOrder"}} class="quantity-button">Place Order</button>
+  </div>
+</div>

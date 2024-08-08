@@ -1,0 +1,12 @@
+<div class="text-slider">
+    {{#each textSlides as |slide index|}}
+    <div class="text-slide {{if (eq index currentTextIndex) " active"}}">
+        {{slide.caption}}
+    </div>
+    {{/each}}
+    <div class="dots">
+        {{#each textSlides as |slide index|}}
+        <span class="dot {{if (eq index currentTextIndex) " active"}}" {{action "goToTextSlide" index}}></span>
+        {{/each}}
+    </div>
+</div>

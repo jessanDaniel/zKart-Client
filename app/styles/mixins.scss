@@ -1,0 +1,13 @@
+@mixin button-mixin($width, $bg-color, $padding-block, $margin-top) {
+        width: $width;
+        margin-inline: auto;
+        border: 1px solid transparent;
+        border-radius: 5px;
+        background-color: $bg-color;
+        color: white;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding-block: $padding-block;
+        margin-top: $margin-top;
+        cursor: pointer;
+}

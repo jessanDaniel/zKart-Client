@@ -1,0 +1,12 @@
+<div class="slider">
+    <div class="slides" style={{slideStyle}}>
+        {{#each slides as |slide|}}
+            <div class="slide">
+                <img src={{slide.image}} alt={{slide.alt}}>
+                <div class="caption">{{slide.caption}}</div>
+            </div>
+        {{/each}}
+    </div>
+    <a class="prev" {{action "changeSlide" -1}}>&#10094;</a>
+    <a class="next" {{action "changeSlide" 1}}>&#10095;</a>
+</div>

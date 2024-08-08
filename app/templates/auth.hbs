@@ -1,0 +1,109 @@
+<div class="z-auth-container">
+    <div class="z-auth-content">
+        <img class="logo" src="/client/assets/logo.png" alt="logo">
+        <img class="img" src="/client/assets/bg-auth.png" alt="desk-image">
+
+        {{text-slider}}
+    </div>
+    <div class="z-auth-form-container ">
+        <h3>{{if isLogin "Login" "Register"}}</h3>
+
+        <form class="z-auth-form " {{action "handleSubmit" on="submit"}}>
+            
+            {{#unless isLogin}}
+                <div class="name-group">
+                    <div class="name-input-pair">
+                        <label for="firstName">First Name</label>
+                        <input class="name-group-input" type="text" name="firstName" value={{firstName}} onchange={{action (mut firstName) value="target.value"}}>
+                    </div>
+
+                    <div class="name-input-pair">
+                        <label for="lastName">Last Name</label>
+                        <input class="name-group-input" type="text" name="lastName" value={{lastName}} onchange={{action (mut lastName) value="target.value"}}>
+                    </div>
+                </div>
+            {{/unless}}
+
+            <div class="auth-input-pair">
+                <label for="email">Email</label>
+                <input type="email" name="email" value={{email}} onchange={{action (mut email) value="target.value"}}>
+            </div>
+
+            <div class="auth-input-pair">
+                <label for="password">Password</label>
+                <input type="password" name="password" value={{password}} oninput={{action  "updateTypingState" value="target.value"}}>
+                {{#if shouldShowValidation}}
+                    <ul class="password-validator-container">
+                        <li class={{if hasUpper "valid" "invalid"}}>contains uppercase letter</li>
+                        <li class={{if hasLower "valid" "invalid"}}>contains lowercase letter</li>
+                        <li class={{if hasDigit "valid" "invalid"}}>contains a digit</li>
+                        <li class={{if hasSymbol "valid" "invalid"}}>contains a symbol</li>
+                    </ul>
+                {{/if}}
+            </div>
+
+            {{#unless isLogin}}
+                <div class="auth-input-pair">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" name="confirmPassword" value={{confirmPassword}} onchange={{action (mut confirmPassword) value="target.value"}}>
+                </div>
+
+                
+
+                <div class="auth-input-pair">
+                    <label for="mobile">Mobile</label>
+                    <input type="text" name="mobile" value={{mobile}} onchange={{action (mut mobile) value="target.value"}}>
+                </div>
+
+                <div class="auth-input-pair">
+                    <label for="address">Address</label>
+                    <textarea rows="5" cols="10" value={{address}} onchange={{action (mut address) value="target.value"}}></textarea>
+                </div>
+            {{/unless}}
+
+        <button type="submit">{{if isLogin "Login" "Register"}}</button>
+        </form>
+        <h4 {{action "toggleForm" on="click"}}>{{if isLogin "Click here to create an account" "Already have an account ? click to login"}}</h4>
+
+    </div>
+</div>
+
+
+{{!-- <div class="container">
+    <h3>{{if isLogin "Login" "Register"}}</h3>
+
+    <form {{action "handleSubmit" on="submit"}}>
+
+        <label for="email">Email</label>
+        <input type="email" name="email" value={{email}} onchange={{action (mut email) value="target.value"}}>
+
+        <label for="password">Password</label>
+        <input type="password" name="password" value={{password}} onchange={{action (mut password) value="target.value"}}>
+
+        {{#unless isLogin}}
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="password" name="confirmPassword" value={{confirmPassword}} onchange={{action (mut confirmPassword) value="target.value"}}>
+
+            <label for="firstName">First Name</label>
+            <input type="text" name="firstName" value={{firstName}} onchange={{action (mut firstName) value="target.value"}}>
+
+            <label for="lastName">Last Name</label>
+            <input type="text" name="lastName" value={{lastName}} onchange={{action (mut lastName) value="target.value"}}>
+
+            <label for="mobile">Mobile</label>
+            <input type="text" name="mobile" value={{mobile}} onchange={{action (mut mobile) value="target.value"}}>
+
+            <label for="address">Address</label>
+            <textarea rows="5" cols="10" value={{address}} onchange={{action (mut address) value="target.value"}}></textarea>
+
+        {{/unless}}
+
+    <button type="submit">{{if isLogin "Login" "Register"}}</button>
+    </form>
+
+    <button {{action "toggleForm"}}>Toggle</button>
+    <button {{action "logout"}} >Logout</button>
+</div>
+{{outlet}} --}}
+

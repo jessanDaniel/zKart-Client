@@ -1,0 +1,24 @@
+<div class="product-card-wrapper">
+    <div class="product-header">
+        <div class="stock-status">In stock</div>
+        {{#if productObj.discount}}
+            <div class="offer">20%</div>
+        {{/if}}
+    </div>
+    <div class="prod-img">
+        <img src= "data:image/jpeg;base64,{{productObj.image}}" alt="product-image">
+    </div>
+    <div class="brand-model">
+        <h4 class="product-brand">{{productObj.productBrand}}</h4>
+        <h3 class="product-model" {{action 'detailsAction'}}>{{productObj.productModel}}</h3>
+    </div>
+    <div class="price-cart">
+        <p class="price">&#8377;&nbsp;{{productObj.price}}</p>
+        {{#if sessionPresent}}
+            {{#unless isAdmin}}
+                {{action-button content="Add to cart" class="cart-button" onClick=(action 'addToCart' productObj.productId)}}
+            {{/unless}}
+        {{/if}}
+    </div>
+
+</div>

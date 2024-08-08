@@ -1,0 +1,32 @@
+<div class="z-landing-nav">
+    <div class="left-section">
+        <img src="/client/assets/nav-logo.png" alt="nav-logo" {{action 'goToHome'}}>
+    </div>
+    <div class="right-section">
+        {{#if sessionPresent}}
+            {{#unless isAdmin}}
+                <div class="icon">
+                    <img {{action 'orderAction'}} src="/client/assets/order.png" alt="order">
+                    <div>
+                    Order
+                    </div>
+                </div>
+                <div class="icon">
+                    <img {{action 'cartAction'}} src="/client/assets/cart.png" alt="cart">
+                    <div>
+                    Cart
+                    </div> 
+                        
+                </div>
+            {{/unless}}
+        {{/if}}
+        {{#if sessionPresent}}
+            {{#if isAdmin}}
+                {{#unless isAdminRoute}}
+                    <button {{action "redirectToDashboard" on="click"}} class="dashboard-button">Dashboard</button>
+                {{/unless}}
+            {{/if}}
+        {{/if}}
+        <button {{action "performAction" }} class="login-button">{{if sessionPresent "Logout" "Login"}}</button>
+    </div>
+</div>

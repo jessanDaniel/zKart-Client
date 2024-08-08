@@ -1,0 +1,5 @@
+<select name="custom-select" class="default-style {{classDec}}">
+    {{#each valueArr as |valueObj|}}
+        <option value={{valueObj.value}} selected={{if (eq valueObj.value filterBy) 'selected'}}>{{valueObj.viewValue}}</option>
+    {{/each}}
+</select>

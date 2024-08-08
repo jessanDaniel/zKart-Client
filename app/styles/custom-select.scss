@@ -1,0 +1,10 @@
+select.default-style {
+    color:black;
+    border: 2px solid #cbcbcb;
+    border-radius: 4px;
+}
+
+select.default-style:focus,select.default-style:focus-visible {
+    border: 2px solid #cbcbcb;
+    outline:none
+}

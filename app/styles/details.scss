@@ -1,0 +1,127 @@
+@import 'mixins';
+
+.prod-details-wrapper {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url('bg-noise.jpg');
+    background-repeat: repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &>.prod-details-hero {
+        margin-inline:auto;
+        min-width: 82%;
+        height: 50%;
+        display: flex;
+        column-gap: 7rem;
+        align-items: center;
+        
+        
+        .prod-frame-image{
+            position: relative;
+            width: 35%;
+            height: 55%;
+            background-color: transparent;
+
+            img {
+                object-fit: cover;
+                background-repeat:no-repeat;
+            }
+
+            img.frame-image {
+                width: 100%;
+            }
+
+            img.product-image {
+                width:16.5rem;
+                height: 13em;
+                position: absolute;
+                top: 85px;
+                right: 55px;
+            }
+
+        }
+
+        .prod-details-island {
+            position: relative;
+            width: 70%;
+            height: 28rem;
+            padding-inline: 46px;
+            padding-block: 2em;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+            display: grid;
+            grid-template-columns: 100px 1fr;
+            grid-template-rows: repeat(auto-fill, 52px);
+            column-gap: 47px;
+            row-gap: 10px;
+
+            p{
+                display: block;
+                font-size:medium;
+                height: auto;
+                text-transform: capitalize;
+            }
+
+            p.product-detail-title {
+                color: #89898B;
+                font-weight: 600;
+            }
+
+            p:not(.product-detail-title) {
+                color: black;
+                font-weight: 400;
+            }
+        }
+        
+        
+
+    }
+}
+
+.prod-details-cta {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    right: 1rem;
+    bottom: 1rem;
+    width: 18rem;
+
+    .stock-ops {
+        display: flex;
+        align-items: center;
+        column-gap: 20px;
+
+        
+
+        svg {
+            color: white;
+        }
+    }
+
+    button {
+        @include button-mixin(7rem,#cb997e,8px,0);
+        text-transform: capitalize;
+    }
+
+}
+
+.minus, .plus, .back {
+    width: 30px;
+    height: 30px;
+    background-color: #00ACFD;
+    border-radius: 5px;
+    display: grid;
+    place-items:center;
+    cursor: pointer;
+}
+
+.back{
+    position: absolute;
+    left: 3rem;
+    bottom: 1rem;
+}

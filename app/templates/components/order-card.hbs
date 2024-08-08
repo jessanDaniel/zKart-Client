@@ -1,0 +1,14 @@
+<div class="order-card">
+  <h2>Order ID: {{orderId}}</h2>
+  <div class="order-details">
+    {{#each products as |product|}}
+      <div class="product-card">
+        <h3>{{product.productBrand}} - {{product.productModel}}</h3>
+        
+        <p>Price: &#8377; {{product.price}}</p>
+        <p>{{product.description}}</p>
+      </div>
+    {{/each}}
+  </div>
+  <p>Total: &#8377; {{calculate-total products}}</p>
+</div>

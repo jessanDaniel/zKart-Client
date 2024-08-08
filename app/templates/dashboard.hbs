@@ -1,0 +1,125 @@
+<div class="z-dashboard-container">
+    {{nav-bar userInfo=model.userInfo setUserNull=(action 'setUserNull')}}
+    <div class="z-dashboard-hero">
+        <div class="admin-actions">Select the action you want to perform</div>
+        <div class="dashboard-card-section">
+            <div class="action-card {{if (eq this.activeCard 'add') 'active'}} " {{action "showAddForm"}}>
+                <div class="svg-wrapper">
+                    <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M2 12C2 6.47715 6.47715 2 12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12ZM12 4C7.58172 4 4 7.58172 4 12C4 16.4183 7.58172 20 12 20C16.4183 20 20 16.4183 20 12C20 7.58172 16.4183 4 12 4Z"
+                            fill="currentColor" />
+                        <path fill-rule="evenodd" clip-rule="evenodd"
+                            d="M13 7C13 6.44772 12.5523 6 12 6C11.4477 6 11 6.44772 11 7V11H7C6.44772 11 6 11.4477 6 12C6 12.5523 6.44772 13 7 13H11V17C11 17.5523 11.4477 18 12 18C12.5523 18 13 17.5523 13 17V13H17C17.5523 13 18 12.5523 18 12C18 11.4477 17.5523 11 17 11H13V7Z"
+                            fill="currentColor" />
+                    </svg>
+                </div>
+                <p>Add a Product</p>
+            </div>
+            <div class="action-card {{if (eq this.activeCard 'update') 'active'}} " {{action "showUpdate"}}>
+                <svg width="70" height="70" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M10 12C9.44769 12 9 12.4477 9 13C9 13.5523 9.44769 14 10 14H14C14.5522 14 15 13.5523 15 13C15 12.4477 14.5522 12 14 12H10Z"
+                        fill="currentColor" />
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                        d="M4 2C2.34314 2 1 3.34314 1 5V19C1 20.6569 2.34314 22 4 22H20C21.6569 22 23 20.6569 23 19V5C23 3.34314 21.6569 2 20 2H4ZM20 4H4C3.44769 4 3 4.44769 3 5V8H21V5C21 4.44769 20.5522 4 20 4ZM3 19V10H21V19C21 19.5523 20.5522 20 20 20H4C3.44769 20 3 19.5523 3 19Z"
+                        fill="currentColor" />
+                </svg>
+                <p>Update Stock</p>
+            </div>
+            
+        </div>
+        <div class="dashboard-form-section">
+            {{#if isAdd}}
+                <div class="create-form" >
+                    <h3>Product creation</h3>
+                    <form {{action "submitForm" on="submit"}}>
+                        <div class="form-variant-2">
+                            <div class="dashboard-input-pair">
+                                <label for="category">Category</label>
+                                <select name="category" onchange={{action (mut selectedCategory) value="target.value"}}>
+                                    {{#each categories as |category| }}
+                                        <option value={{category.value}}>{{category.label}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                            <div class="dashboard-input-pair">
+                                <label for="brand">Brand</label>
+                                <select name="brand" onchange={{action (mut selectedBrand) value="target.value"}}>
+                                    {{#each filteredBrands as |brand|}}
+                                        <option value={{brand.value}}>{{brand.label}}</option>
+                                    {{/each}}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-variant-2">
+                            <div class="dashboard-input-pair">
+                                <label for="model">Model</label>
+                                <input type="text" name="model" value={{productModel}} onchange={{action (mut productModel) value="target.value"}}>
+                            </div>
+                            <div class="dashboard-input-pair">
+                                <label for="price">Price</label>
+                                <input type="text" name="price" value={{price}} onchange={{action (mut price) value="target.value"}}>
+                            </div>
+                        </div>
+                        <div class="form-variant-2">
+                            <div class="dashboard-input-pair">
+                                <label for="quantity">Quantity</label>
+                                <input type="number" name="quantity" min="0" max="100" value={{quantity}} onchange={{action (mut quantity) value="target.value"}}>
+                            </div>
+                            <div class="dashboard-input-pair">
+                                <label for="image">Image</label>
+                                <input type="file" name="image" value={{image}} onchange={{action (mut image) value="target.value"}}>
+                            </div>
+                        </div>
+                        <div class="form-variant-2">
+                            <div class="dashboard-input-pair">
+                                <label for="description">Description</label>
+                                <input type="text" name="description"  value={{description}} onchange={{action (mut description) value="target.value"}}/>
+                            </div>
+                        </div>
+
+                        <button type="submit">Create</button>
+                    </form>
+                </div>
+            {{/if}}
+            
+            {{#if isUpdate}}
+                <div class="update-product">
+                    <h3>Update Products</h3>
+                    <div class="product-list">
+                        {{#each model.products.product_list as |product|}}
+                            <div class="product-card">
+                                <div class="product-details">
+                                    <h3>{{product.productBrand}} - {{product.productModel}}</h3>
+                                    <p>Price: &#8377;&nbsp;{{product.price}}</p>
+                                    <p>Stock: {{product.stock}}</p>
+                                    <p>Description: {{product.description}}</p>
+                                    {{#if product.image}}
+                                        <img  src="data:image/jpeg;base64,{{product.image}}" alt="{{product.productModel}}" />
+                                    {{/if}}
+                                </div>
+                                <div class="product-actions">
+                                    
+                                    
+                                        <button {{action "increaseStock" product}} class="action-button">Increase Stock</button>
+                                    
+                                    
+                                    <!-- Decrease Stock Form -->
+                                    
+                                        <button {{action "decreaseStock" product}} class="action-button">Decrease Stock</button>
+                                    
+    
+                                    <!-- Delete Product Form -->
+                                    
+                                        <button {{action "deleteProduct" product}}  class="action-button">Delete Product</button>
+                                    
+                                </div>
+                            </div>
+                        {{/each}}
+                    </div>
+                </div>
+            {{/if}}
+        </div>
+    </div>
+</div>

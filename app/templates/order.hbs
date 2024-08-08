@@ -1,0 +1,6 @@
+<h1 id="order-header"><span {{action 'routeToLanding'}}>&#8592;&nbsp;</span>My Orders</h1>
+<div class="orders-container">
+    {{#each (object-to-array model.orderHistory) as |order|}}
+        {{order-card orderId=order.key products=order.value}}
+    {{/each}}
+</div>

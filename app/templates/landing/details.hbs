@@ -1,0 +1,60 @@
+<div class="prod-details-wrapper">
+    <div class="prod-details-hero">
+        <div class="prod-frame-image" >
+            <img class="frame-image" src="/client/assets/woodFrame.png" alt="woodFrame">
+            <img class="product-image" src="data:image/jpeg;base64,{{product.image}}" alt="product image">
+        </div>
+        <div class="prod-details-island">
+            <p class="product-detail-title">Brand :</p>
+            <p>{{product.productBrand}}</p>
+
+            <p class="product-detail-title">Model :</p>
+            <p>{{product.productModel}}</p>
+
+            <p class="product-detail-title">Category :</p>
+            <p>{{product.category}}</p>
+
+            <p class="product-detail-title">Price :</p>
+            <p>&#8377;&nbsp;{{product.price}}</p>
+
+            <p class="product-detail-title">Description :</p>
+            <p>{{product.description}}</p>
+
+            {{#if isSessionPresent}}
+                {{#unless isAdmin}}
+            <div class="prod-details-cta">
+                <div class="stock-ops">
+                    <div class="minus" {{action 'decrementStock' }}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M4 12C4 11.4477 4.44772 11 5 11H19C19.5523 11 20 11.4477 20 12C20 12.5523 19.5523 13 19 13H5C4.44772 13 4 12.5523 4 12Z"
+                                fill="currentColor" />
+                        </svg>
+                    </div>
+                    <div>{{productQuantity}}</div>
+                    <div class="plus" {{action 'incrementStock' }}>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M12 4C11.4477 4 11 4.44772 11 5V11H5C4.44772 11 4 11.4477 4 12C4 12.5523 4.44772 13 5 13H11V19C11 19.5523 11.4477 20 12 20C12.5523 20 13 19.5523 13 19V13H19C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11H13V5C13 4.44772 12.5523 4 12 4Z"
+                                fill="currentColor" />
+                        </svg>
+                    </div>
+                </div>
+                <button {{action 'addToCart' product.productId}} >Add to Cart</button>
+            </div>
+            {{/unless}}
+            {{/if}}
+            <div class="back" {{action 'backToLanding' }}>
+                <svg width="15" height="15" fill="#ffffff" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M222.927 580.115l301.354 328.512c24.354 28.708 20.825 71.724-7.883 96.078s-71.724 20.825-96.078-7.883L19.576 559.963a67.846 67.846 0 01-13.784-20.022 68.03 68.03 0 01-5.977-29.488l.001-.063a68.343 68.343 0 017.265-29.134 68.28 68.28 0 011.384-2.6 67.59 67.59 0 0110.102-13.687L429.966 21.113c25.592-27.611 68.721-29.247 96.331-3.656s29.247 68.721 3.656 96.331L224.088 443.784h730.46c37.647 0 68.166 30.519 68.166 68.166s-30.519 68.166-68.166 68.166H222.927z">
+                        </path>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</div>
